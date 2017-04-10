@@ -251,6 +251,18 @@ function copy (src) {
         else if (isString(src)) {
             dst = new String(src);
         }
+        else if (isSet(src)) {
+            dst = new Set(src);
+        }
+        else if (isWeakSet(src)) {
+            dst = new WeakSet(src);
+        }
+        else if (isMap(src)) {
+            dst = new Map(src);
+        }
+        else if (isWeakMap(src)) {
+            dst = new WeakMap(src);
+        }
         else if (Object.create && Object.getPrototypeOf) {
             dst = Object.create(Object.getPrototypeOf(src));
         }
@@ -289,6 +301,10 @@ function isError (obj) { return toS(obj) === '[object Error]' }
 function isBoolean (obj) { return toS(obj) === '[object Boolean]' }
 function isNumber (obj) { return toS(obj) === '[object Number]' }
 function isString (obj) { return toS(obj) === '[object String]' }
+function isSet (obj) { return toS(obj) === '[object Set]' }
+function isWeakSet (obj) { return toS(obj) === '[object WeakSet]' }
+function isMap (obj) { return toS(obj) === '[object Map]' }
+function isWeakMap (obj) { return toS(obj) === '[object WeakMap]' }
 
 var isArray = Array.isArray || function isArray (xs) {
     return Object.prototype.toString.call(xs) === '[object Array]';
